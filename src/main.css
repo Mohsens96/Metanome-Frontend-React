@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
+/* Tailwind directives (handled by PostCSS build) */
+
+/* simple tokens */
+.btn-primary {
+  /* Using raw CSS instead of @apply to avoid tooling warnings in plain CSS lint */
+  background-color: var(--color-accent, #4e4376);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: opacity .15s ease;
+}
+.btn-primary:hover { opacity: .95; }
+/* Logo image styling */
+.brand-logo { height:clamp(40px,10vw,72px); width:auto; display:block; object-fit:contain; }
+
+/* Remove any visual impact of deprecated classes if still present */
+/* (Removed empty ruleset lint trigger) */
+/* Brand title (huge M + static wolf above rest) */
+.brand-title { display:inline-flex; align-items:flex-end; position:relative; line-height:1; overflow:visible; }
+.brand-text { font-weight:800; background:linear-gradient(135deg,#2b5876,#4e4376); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:none; }
+.brand-wolf__m { font-size:clamp(3.2rem,7vw,5.6rem); padding-right:0.18rem; letter-spacing:-0.04em; position:relative; top:0.18em; }
+.brand-rest { font-size:clamp(1.6rem,3.2vw,2.4rem); position:relative; display:inline-block; overflow:visible; }
+.wolf-walker { position:absolute; left:8%; top:-95%; width:clamp(3rem,5vw,5.2rem); aspect-ratio:1/1; pointer-events:none; z-index:5; mix-blend-mode:normal; }
+.wolf-walker img, .wolf-walker picture { width:100%; height:100%; object-fit:contain; display:block; }
+/* (animation removed; returning to static wolf) */
+
+/* Fallback when background-clip is unsupported */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) { .brand-text { color:#4e4376; background:none; } }
+
+/* Legacy logo image (from Angular frontend) */
+.legacy-logo { height:clamp(40px,10vw,72px); width:auto; display:block; object-fit:contain; }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
